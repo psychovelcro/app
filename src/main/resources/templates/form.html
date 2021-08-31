@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <title th:text="${titulo}">Insert title here</title>
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -11,6 +12,7 @@
 
 </head>
 <body>
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">SpringBoot</a>
@@ -40,48 +42,48 @@
 
 	<div class="container">
 
-		<h1
-			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
-			th:text="${titulo}"></h1>
+		<h1 th:text="${titulo}"
+			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
 
-		<a th:href="@{/form}">crear cliente</a>
 
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>id</th>
-					<th>nombre</th>
-					<th>apellido</th>
-					<th>email</th>
-					<th>fecha</th>
-				</tr>
-			</thead>
-			<tbody>
+		<form th:action="@{/form}" th:object="${cliente}" method="post">
 
-				<tr th:each="cliente: ${clientes}">
-					<td th:text="${cliente.id}"></td>
-					<td th:text="${cliente.nombre}"></td>
-					<td th:text="${cliente.apellido}"></td>
-					<td th:text="${cliente.email}"></td>
-					<td th:text="${cliente.createAt}"></td>
-				</tr>
+			<div class="form-group">
 
-			</tbody>
-		</table>
+				<label class="col-sm-2 col-form-label">Nombre</label>
+
+				<div class="col-sm-6">
+					<input type="text" th:field="*{nombre}" class="form-control" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 col-form-label">Apellido</label>
+				<div class="col-sm-6">
+					<input type="text" th:field="*{apellido}" class="form-control" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 col-form-label">Email</label>
+				<div class="col-sm-6">
+					<input type="email" th:field="*{email}" class="form-control" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-6">
+					<input type="submit" value="Crear Cliente" class="btn btn-primary" />
+				</div>
+
+			</div>
+
+
+
+			<input type="hidden" th:field="*{id}" />
+		</form>
 
 	</div>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-		integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
-		integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-		crossorigin="anonymous"></script>
 </body>
 </html>
